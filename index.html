@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <section>
+        <div class="container">
+            <h1>Pomodoro</h1>
+
+            <div class="panel">
+                <p id="work" class="active">Work</p>
+                <p id="break">Break</p>
+            </div>
+
+            <div class="timer">
+                <div class="circle">
+                    <div class="time">
+                        <p id="minutes">25</p>
+                        <p>:</p>
+                        <p id="seconds">00</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="start">∆</button>
+                <a href="./index.html" id="reset">•</a>
+            </div>
+        </div>
+    </section>
+
+    <div id="settings-menu">
+        <h2>Settings</h2>
+        <div class="setting-group">
+            <label for="work-duration">Work Duration (minutes):</label>
+            <input type="number" id="work-duration" min="1" value="25">
+        </div>
+        <div class="setting-group">
+            <label for="break-duration">Break Duration (minutes):</label>
+            <input type="number" id="break-duration" min="1" value="5">
+        </div>
+        <div class="setting-group">
+            <label for="cycles">Cycles:</label>
+            <input type="number" id="cycles" min="1" value="4">
+        </div>
+        <div class="setting-group">
+            <label for="auto-start">Auto Start:</label>
+            <input type="checkbox" id="auto-start">
+        </div>
+    </div>
+
+    <div id="hamburger">☰</div>
+
+    <script src="./index.js"></script>
+</body>
+
+</html>

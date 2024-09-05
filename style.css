@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+:root {
+  --color-primary: hsl(235, 35%, 19%);
+  --color-secondary: hsl(358, 78%, 69%);
+  --color-font: hsla(0, 0%, 100%, 0.902);
+  --color-shadow: hsl(235, 36%, 35%);
+  --color-accent: hsl(358, 78%, 50%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: var(--color-primary);
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 2rem;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: var(--color-font);
+  margin-bottom: 3rem;
+}
+
+/* Панель Work/Break */
+.panel {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 300px;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-primary);
+  border-radius: 50px;
+  box-shadow: 0px 4px 10px var(--color-shadow);
+}
+
+.panel p {
+  font-size: 1.2rem;
+  color: var(--color-font);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.panel p.active {
+  opacity: 1;
+  color: var(--color-accent);
+}
+
+/* Таймер */
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20rem;
+  height: 20rem;
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+  box-shadow: 0px 4px 20px var(--color-shadow);
+  margin: 3rem 0;
+}
+
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+
+.time {
+  display: flex;
+  align-items: baseline;
+  color: var(--color-font);
+}
+
+.time p {
+  font-size: 3.5rem;
+}
+
+.time p:nth-of-type(2) {
+  font-size: 2.5rem;
+  margin: 0 0.5rem;
+}
+
+/* Кнопки управління */
+.controls {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.controls button {
+  background-color: transparent;
+  border: none;
+  color: var(--color-font);
+  font-size: 3rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.controls button:hover {
+  color: var(--color-accent);
+}
+
+/* Гамбургер-меню */
+#hamburger {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: var(--color-font);
+  cursor: pointer;
+}
+
+#settings-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background-color: var(--color-primary);
+  color: var(--color-font);
+  padding: 2rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+#settings-menu.show {
+  display: block;
+}
+
+.setting-group {
+  margin-bottom: 1.5rem;
+}
+
+.setting-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: var(--color-font);
+}
+
+.setting-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--color-secondary);
+  border-radius: 0.3rem;
+  font-size: 1rem;
+}
+
