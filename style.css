@@ -107,17 +107,23 @@ h1 {
   margin-top: 1.5rem;
 }
 
-.controls button {
-  background-color: transparent;
+.controls .button {
+  background-color: whitesmoke;
   border: none;
-  color: var(--color-font);
-  font-size: 3rem;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  padding: 0.5rem 2rem;
+  border-radius: 50px;
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.controls button:hover {
-  color: var(--color-accent);
+.controls .button:hover {
+  background-color: var(--color-accent);
+}
+
+.controls .button:active {
+  transform: scale(0.95);
 }
 
 /* Гамбургер-меню */
@@ -168,3 +174,22 @@ h1 {
   font-size: 1rem;
 }
 
+@media (max-width: 600px) {
+  .timer {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .circle {
+    width: 13rem;
+    height: 13rem;
+  }
+
+  .time p {
+    font-size: 2.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}

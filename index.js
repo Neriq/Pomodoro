@@ -21,6 +21,34 @@ document.addEventListener("DOMContentLoaded", () => {
   let cycles = parseInt(cyclesInput.value);
   let completedCycles = 0;
 
+  // Завантаження налаштувань з Local Storage
+  const loadSettings = () => {
+    const savedWorkTime = localStorage.getItem("workDuration");
+    const savedBreakTime = localStorage.getItem("breakDuration");
+    const savedCycles = localStorage.getItem("cycles");
+    const savedAutoStart = localStorage.getItem("autoStart");
+
+    if (savedWorkTime) workDurationInput.value = savedWorkTime;
+    if (savedBreakTime) breakDurationInput.value = savedBreakTime;
+    if (savedCycles) cyclesInput.value = savedCycles;
+    if (savedAutoStart === "true") autoStartCheckbox.checked = true;
+
+    // Оновлюємо значення змінних після завантаження збережених даних
+    workTime = parseInt(workDurationInput.value);
+    breakTime = parseInt(breakDurationInput.value);
+    cycles = parseInt(cyclesInput.value);
+    seconds = 0;
+    updateDisplay();
+  };
+
+  // Збереження налаштувань в Local Storage
+  const saveSettings = () => {
+    localStorage.setItem("workDuration", workDurationInput.value);
+    localStorage.setItem("breakDuration", breakDurationInput.value);
+    localStorage.setItem("cycles", cyclesInput.value);
+    localStorage.setItem("autoStart", autoStartCheckbox.checked);
+  };
+
   const toggleSettings = () => {
     settingsMenu.classList.toggle("show");
   };
@@ -81,6 +109,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
   };
 
+  // Зберігаємо налаштування при зміні значень
+  workDurationInput.addEventListener("input", () => {
+    workTime = parseInt(workDurationInput.value);
+    seconds = 0;
+    updateDisplay();
+    saveSettings(); // Зберігаємо налаштування
+  });
+
+  breakDurationInput.addEventListener("input", () => {
+    breakTime = parseInt(breakDurationInput.value);
+    seconds = 0;
+    updateDisplay();
+    saveSettings(); // Зберігаємо налаштування
+  });
+
+  cyclesInput.addEventListener("input", () => {
+    cycles = parseInt(cyclesInput.value);
+    updateDisplay();
+    saveSettings(); // Зберігаємо налаштування
+  });
+
+  autoStartCheckbox.addEventListener("change", () => {
+    saveSettings(); // Зберігаємо налаштування
+  });
+
   hamburgerButton.addEventListener("click", toggleSettings);
 
   document.addEventListener("click", (event) => {
@@ -91,22 +144,25 @@ document.addEventListener("DOMContentLoaded", () => {
       settingsMenu.classList.remove("show");
     }
   });
-
-  startButton.addEventListener("click", startTimer);
-
-  workDurationInput.addEventListener("input", () => {
+  const resetTimer = () => {
+    clearInterval(interval);
     workTime = parseInt(workDurationInput.value);
-    updateDisplay();
-  });
-
-  breakDurationInput.addEventListener("input", () => {
     breakTime = parseInt(breakDurationInput.value);
+    seconds = 0;
+    isWorkSession = true;
+    workTitle.classList.add("active");
+    breakTitle.classList.remove("active");
+    startButton.style.display = "block";
+    resetButton.style.display = "none";
     updateDisplay();
-  });
+  };
 
-  cyclesInput.addEventListener("input", () => {
-    cycles = parseInt(cyclesInput.value);
-  });
+  // Дії на кнопки
+  startButton.addEventListener("click", startTimer);
+  resetButton.addEventListener("click", resetTimer);
+
+  // Завантажуємо збережені налаштування при завантаженні сторінки
+  loadSettings();
 
   // Початковий стан - відображення Work
   workTitle.classList.add("active");
